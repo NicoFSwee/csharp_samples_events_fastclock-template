@@ -17,8 +17,15 @@ namespace EventsDemo.FastClock
 
             set
             {
-                _factor = value;
-                _timer.Interval = TimeSpan.FromMilliseconds(1000 / value);
+                if(value > 0)
+                {
+                    _factor = value;
+                    _timer.Interval = TimeSpan.FromMilliseconds(1000 / value);
+                }
+                else
+                {
+                    throw new ArgumentException("Faktor darf nicht 0 sein!");
+                }
             }
         }
 
